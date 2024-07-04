@@ -16,8 +16,11 @@ make clean
 
 ## Демонстрация работы программ
 ### Задание №1
+![image](https://github.com/EltexHomework/VirtualFileSystem/assets/70006380/fa8083ad-6bdb-49b5-9302-de22d5b2251e)
 
 ### Задание №2
 - Переключение между вкладками
+![switching](https://github.com/EltexHomework/VirtualFileSystem/assets/70006380/2755bd34-0ab9-4af8-91d2-e2e80d5ea588)
 
 - Переход по директориям
+![traverse](https://github.com/EltexHomework/VirtualFileSystem/assets/70006380/2fd6b6fb-8310-4c32-b7bc-e74191d65dda)
