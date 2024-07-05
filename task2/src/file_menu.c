@@ -1,4 +1,5 @@
 #include "../headers/file_menu.h"
+#include <menu.h>
 
 struct file_menu* create_file_menu(int width, int height, int start_x, int start_y) {
   struct file_menu* file_menu = (struct file_menu*) malloc(sizeof(struct file_menu));
@@ -8,13 +9,14 @@ struct file_menu* create_file_menu(int width, int height, int start_x, int start
 
   window = newwin(height, width, start_y, start_x);
   keypad(window, TRUE);
-
+  
+  set_menu_format(NULL, height - 4, 1);
   menu = new_menu((ITEM **)items);
   set_menu_mark(menu, NULL);
 
   set_menu_win(menu, window);
   set_menu_sub(menu, derwin(window, height - 4, width - 2, 3, 1));
-  set_menu_format(menu, 1, 1);
+  //set_menu_format(menu, height - 5, 1);
 
   box(window, 0, 0);
   print_header(window, width, COLOR_PAIR(1));

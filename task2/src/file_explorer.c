@@ -6,7 +6,7 @@ struct file_explorer* create_explorer() {
   init_curses();
   getmaxyx(stdscr, explorer->height, explorer->width);
   
-  int menu_height = 20;
+  int menu_height = explorer->height - 3;
   int menu_width = explorer->width / 2 - 2;
 
   explorer->left_menu = create_file_menu(menu_width, menu_height, 1, 1);
@@ -117,7 +117,8 @@ void dispose(struct file_explorer* explorer) {
 
 void print_reference() {
   attron(COLOR_PAIR(2));
-  mvprintw(LINES - 1, 0, "Arrow Keys to navigate (F1 to Exit, Tab to switch between menus)");
+  mvprintw(LINES - 2, 0, "Arrow Keys to navigate (F1 to Exit, Tab to switch between menus)");
+  mvprintw(LINES - 1, 0, "Enter to navigate in directory");
   attroff(COLOR_PAIR(2));
   refresh();
 }
