@@ -20,7 +20,8 @@ make clean
 
 ### Задание №2
 - Переключение между вкладками
-![switching](https://github.com/EltexHomework/VirtualFileSystem/assets/70006380/2755bd34-0ab9-4af8-91d2-e2e80d5ea588)
+![switching](https://github.com/EltexHomework/VirtualFileSystem/assets/70006380/c93e61f2-4d4f-4cf0-9fdc-5c096741563a)
 
 - Переход по директориям
-![traverse](https://github.com/EltexHomework/VirtualFileSystem/assets/70006380/2fd6b6fb-8310-4c32-b7bc-e74191d65dda)
+![traverse](https://github.com/EltexHomework/VirtualFileSystem/assets/70006380/68621b76-3cf0-40f8-9a09-79fc004045e8)
+
