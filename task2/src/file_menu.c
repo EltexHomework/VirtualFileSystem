@@ -16,7 +16,6 @@ struct file_menu* create_file_menu(int width, int height, int start_x, int start
 
   set_menu_win(menu, window);
   set_menu_sub(menu, derwin(window, height - 4, width - 2, 3, 1));
-  //set_menu_format(menu, height - 5, 1);
 
   box(window, 0, 0);
   print_header(window, width, COLOR_PAIR(1));
@@ -35,13 +34,20 @@ void update_menu(struct file_menu *menu, const char* selected_dir) {
   struct file_info* files = read_dir_data(selected_dir, &size);
   
   if (menu->items != NULL) { 
-    for (int i = 0; i < menu->size; ++i)
+    for (int i = 0; i < menu->size; ++i) {
       free_item(menu->items[i]);
+    }
   }
 
-  update_items(files, menu, getmaxx(menu->menu_win), size);
-  unpost_menu(menu->menu);
+  menu->items = update_items(files, getmaxx(menu->menu_win), size);
+  
+  for (int i = 0; i < size; i++) {
+    free(files[i].name);
+  }
+  free(files);
 
+  unpost_menu(menu->menu);
+  
   set_menu_items(menu->menu, menu->items); 
   menu->size = size;
 
@@ -54,8 +60,8 @@ void update_menu(struct file_menu *menu, const char* selected_dir) {
   refresh();
 }
 
-void update_items(struct file_info* files, struct file_menu* menu, int menu_width, int size) {
-  menu->items = (ITEM **)calloc(size, sizeof(ITEM *));
+ITEM** update_items(struct file_info* files, int menu_width, int size) {
+  ITEM** items = (ITEM **)calloc(size, sizeof(ITEM *));
   int size_width = 8;
   int index = 0;
   int max_name_length = get_max_length(files, size);
@@ -78,10 +84,11 @@ void update_items(struct file_info* files, struct file_menu* menu, int menu_widt
              size_width, files[i].size,
              time_length, mtime_str);
 
-    menu->items[index] = new_item(name, buffer);
+    items[index] = new_item(name, buffer);
     index++;
   }
-  menu->items[size - 1] = NULL;
+  items[size - 1] = NULL;
+  return items;
 }
 
 int get_max_length(struct file_info* files, int size) {

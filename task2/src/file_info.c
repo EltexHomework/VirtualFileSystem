@@ -12,6 +12,7 @@ struct file_info* read_dir_data(const char* dir, int* size) {
   struct file_info* files_data = (struct file_info *) malloc(n * sizeof(struct file_info));
   *size = n;
 
+
   for (int i = 0; i < n; i++) {
     char file_path[BUFFER_SIZE];
     snprintf(file_path, sizeof(file_path), "%s/%s", dir, namelist[i]->d_name);
